@@ -1,0 +1,17 @@
+// Complete the alternatingCharacters function below.
+// https://www.hackerrank.com/challenges/alternating-characters/problem?h_r=profile
+    static int alternatingCharacters(String s) {
+        char prevChar = s.charAt(0);
+        int tot = 0;
+        char nextChar = s.charAt(1);
+        for(int i =1; i < s.length(); i++) {
+            if(prevChar == nextChar) {
+                tot++;
+            }
+            if (i+1 < s.length()) {
+                nextChar = s.charAt(i+1);
+            }
+            prevChar = s.charAt(i);
+        }
+        return tot;
+    }
