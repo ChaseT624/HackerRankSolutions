@@ -1,0 +1,33 @@
+ // Complete the minimumBribes function below.
+ // https://www.hackerrank.com/challenges/new-year-chaos/problem?h_r=profile
+    static void minimumBribes(int[] q) {
+        int total = 0;
+        boolean maxBribe = false;
+        for(int i = 0; i < q.length -1; i++) {
+            int numSwaps = 0;
+          for(int j = 0; j < q.length-1-i; j++) {
+              if (q[j] > q[j+1]) {
+                  if (q[j] - (j+1) > 2) {
+                      maxBribe = true;
+                      break;
+                  }
+                  int temp = q[j];
+                  q[j] = q[j+1];
+                  q[j+1] = temp;
+                  total++;
+                  numSwaps++;
+              }
+            }
+            if (numSwaps == 0) {
+                  break;
+              }
+        }     
+        if (maxBribe) {
+            System.out.println("Too chaotic");
+        }
+        else {
+            System.out.println(total);
+        }
+
+
+    }
