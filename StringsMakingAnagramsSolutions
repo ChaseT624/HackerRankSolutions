@@ -1,0 +1,19 @@
+// Complete the makeAnagram function below.
+//https://www.hackerrank.com/challenges/ctci-making-anagrams/problem?h_r=profile
+    static int makeAnagram(String a, String b) {
+        int tot = 0;
+        int[] aValues = new int[26];
+        int[] bValues = new int[26];
+        for(int i =0; i < a.length(); i++) {
+            char curChar = a.charAt(i);
+            aValues[curChar - 97]++;
+        }
+        for(int i =0; i < b.length(); i++) {
+            char curChar = b.charAt(i);
+            bValues[curChar - 97]++;
+        }
+        for(int i = 0; i < 26; i++) {
+            tot += Math.abs(aValues[i] - bValues[i]); 
+        }
+        return tot;
+    }
