@@ -1,0 +1,56 @@
+// Complete the substrCount function below.
+//https://www.hackerrank.com/challenges/special-palindrome-again/problem?h_r=profile
+    static long substrCount(int n, String s) {
+       ArrayList<Pairs> list = new ArrayList<Pairs>();
+       char curChar = s.charAt(0);
+       int curCount = 0;
+       for(int i = 0; i < n; i++) {
+          if(s.charAt(i) == curChar) {
+              curCount++;
+          }
+          else {
+              list.add(new Pairs(curCount, curChar));
+              curChar = s.charAt(i);
+              curCount = 1;
+          }
+          if(i+1 >= n) {
+                list.add(new Pairs(curCount, curChar));
+            }
+       }
+       long total = 0;
+       for (int i =0; i < list.size(); i++) {
+           total += add(list.get(i).num);
+       }
+       for(int i = 1; i < list.size() -1; i++) {
+           if(list.get(i-1).c == list.get(i+1).c && list.get(i).num == 1) {
+               if (list.get(i+1).num < list.get(i-1).num) {
+                   total += list.get(i+1).num;
+               }
+               else {
+                   total += list.get(i-1).num;
+               }      
+           }
+       }
+       return total;
+    }
+    
+    static long add(long num) {
+        if(num <= 0) {
+            return 0;
+        }
+        else {
+            return num + add(num -1);
+        }
+    }
+    
+    //Class to make pairs necessary
+    class Pairs {
+
+        long num = 0;
+        char c = 0;
+        
+        public Pairs(long n, char c) {
+            num = n;
+            this.c = c;
+        }
+    }
