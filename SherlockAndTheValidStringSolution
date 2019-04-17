@@ -1,0 +1,25 @@
+// Complete the isValid function below.
+//https://www.hackerrank.com/challenges/sherlock-and-valid-string/problem?h_r=profile
+    static String isValid(String s) {
+        int[] values = new int[26];
+        int maxValue = 0;
+        for(int i = 0; i < s.length(); i++) {
+            values[s.charAt(i) - 97]++;
+            if (values[s.charAt(i) - 97] > maxValue) {
+                maxValue = values[s.charAt(i) - 97];
+            }
+        }
+        int oneDiff = 0;
+        int eq = 0;
+        int other = 0;
+        for(int i = 0; i < 26; i++) {
+            if (values[i] == maxValue-1) {
+                oneDiff++;
+            }
+            else if (values[i] == maxValue) {
+                eq++;
+            }
+            else if (values[i] != 0) {
+                 other++;
+            }
+        }
